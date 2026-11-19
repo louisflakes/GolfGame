@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Golf Hole Viewer</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="view" id="view" aria-label="Hole view"></section>
+      <aside class="panel">
+        <h1 id="hole-name">Loading…</h1>
+        <p class="sub" id="hole-sub"></p>
+        <p id="hole-desc"></p>
+        <h2>Checks</h2>
+        <ul id="issues"></ul>
+        <h2>Share</h2>
+        <p class="sub" id="code-info"></p>
+        <textarea id="code" rows="4" readonly></textarea>
+        <div class="row">
+          <button id="copy-link" type="button">Copy link</button>
+          <button id="load-example" type="button">Load example</button>
+        </div>
+        <label for="paste">Open a share code</label>
+        <textarea id="paste" rows="2" placeholder="Paste a GH1. code or link"></textarea>
+        <div class="row"><button id="open-code" type="button">Open</button></div>
+        <p class="status" id="status" role="status"></p>
+      </aside>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

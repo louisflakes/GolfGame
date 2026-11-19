@@ -1,0 +1,49 @@
+:root {
+  --bg: #f4f1e8;
+  --panel: #fffdf7;
+  --ink: #1f2a1f;
+  --muted: #5d6b5c;
+  --line: #d9d3c2;
+  --accent: #2f7a3a;
+  --warn: #9a6200;
+  --error: #b3261e;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141a15;
+    --panel: #1c241d;
+    --ink: #e7eee5;
+    --muted: #9aab98;
+    --line: #2f3a30;
+    --accent: #6cc479;
+    --warn: #e0a640;
+    --error: #ff8a80;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, sans-serif; }
+.app { display: grid; grid-template-columns: 1fr 340px; height: 100%; }
+.view { position: relative; min-height: 0; overflow: hidden; }
+.view canvas { display: block; width: 100%; height: 100%; }
+.panel { background: var(--panel); border-left: 1px solid var(--line); padding: 20px; overflow-y: auto; }
+h1 { font-size: 22px; margin: 0 0 4px; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 22px 0 8px; }
+.sub { color: var(--muted); margin: 0 0 8px; font-size: 13px; }
+ul { margin: 0; padding-left: 18px; }
+li.ok { color: var(--accent); }
+li.warn { color: var(--warn); }
+li.error { color: var(--error); }
+textarea { width: 100%; font: 12px/1.4 ui-monospace, monospace; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 8px; resize: vertical; word-break: break-all; }
+label { display: block; margin-top: 16px; font-size: 13px; color: var(--muted); }
+.row { display: flex; gap: 8px; margin-top: 8px; }
+button { font: inherit; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--accent); background: var(--accent); color: var(--panel); cursor: pointer; }
+button + button { background: transparent; color: var(--accent); }
+.status { min-height: 1.4em; font-size: 13px; color: var(--muted); }
+@media (max-width: 760px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: 55vh auto; height: auto; }
+  .view { height: 55vh; }
+  .panel { border-left: 0; border-top: 1px solid var(--line); padding: 16px; }
+}

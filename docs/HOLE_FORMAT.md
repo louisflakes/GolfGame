@@ -12,9 +12,11 @@ The final hole is always `generate(intent, procedural) + overrides`. Changing th
 
 ## Coordinates
 
-- Units are meters. Y is up (matching Three.js).
-- The hole sits in a rectangle from `(0, 0)` to `(width, length)` on the X/Z plane. The tee is usually near `z = 0` and play runs toward `+z`.
-- Heights are meters above a base level of 0.
+- Units are meters. Heights are meters above a base level of 0.
+- Hole positions are **map coordinates** `[x, z]`: x to the right, z up the map toward the green. The hole sits in a rectangle from `(0, 0)` to `(width, length)`. The tee is usually near `z = 0`.
+- A golfer facing up the map (`+z`) has `+x` on their right, so the map and the 3D view always agree.
+- **Headings** are radians clockwise from `+z`: `0` is straight up the map, positive turns right. Direction is `(sin h, cos h)`.
+- **3D world:** the renderer places a hole point at world `(x, height, -z)`. Three.js is right-handed, so without flipping z, a player facing `+z` would have `+x` on their left and every dogleg would bend the wrong way. Only `src/render/coords.ts` does this conversion.
 
 ## Schema (TypeScript)
 
@@ -55,7 +57,7 @@ interface Tee {
   id: string;
   name: "black" | "blue" | "white" | "red" | string;
   position: Vec2;          // center of the tee box
-  heading: number;         // aim direction, radians, 0 = +z
+  heading: number;         // aim direction, radians clockwise from +z
   size: Vec2;              // box width and depth
 }
 
